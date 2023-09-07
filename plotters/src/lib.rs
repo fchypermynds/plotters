@@ -681,6 +681,10 @@ The following list is a complete list of features that can be opted in or out.
 `ab_glyph` supports TrueType and OpenType fonts, but does not attempt to
 load fonts provided by the system on which it is running.
 It is pure Rust, and easier to cross compile.
+When this feature is enabled
+with `wasm32` target, the font layout will use internal `ab_glyph` code
+instead of browser's rules. This allows to use plotters on a wasm runtime
+such as `Deno` or `Node.js`.
 To use this, you *must* call `plotters::style::register_font` before
 using any `plotters` functions which require the ability to render text.
 This function only exists when the `ab_glyph` feature is enabled.

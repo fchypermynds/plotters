@@ -1,6 +1,10 @@
 /*!
   The style for shapes and text, font, color, etc.
 */
+
+#[cfg(all(feature = "ab_glyph", feature = "ttf"))]
+compile_error!("features \"ab_glyph\" and \"ttf\" cannot be enabled at the same time");
+
 mod color;
 pub mod colors;
 mod font;
@@ -17,7 +21,7 @@ pub use colors::{BLACK, BLUE, CYAN, GREEN, MAGENTA, RED, TRANSPARENT, WHITE, YEL
 #[cfg(feature = "full_palette")]
 pub use colors::full_palette;
 
-#[cfg(all(not(target_arch = "wasm32"), feature = "ab_glyph"))]
+#[cfg(all(feature = "ab_glyph", not(feature = "ttf")))]
 pub use font::register_font;
 pub use font::{
     FontDesc, FontError, FontFamily, FontResult, FontStyle, FontTransform, IntoFont, LayoutBox,
