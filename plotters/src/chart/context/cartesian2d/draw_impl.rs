@@ -247,8 +247,12 @@ impl<'a, DB: DrawingBackend, X: Ranged, Y: Ranged> ChartContext<'a, DB, Cartesia
                 (cx, cy + label_offset)
             };
 
-            let label_style = &label_style.pos(Pos::new(h_pos, v_pos));
-            area.draw_text(t, label_style, (text_x, text_y))?;
+            let label_style = if label_style.pos == Pos::default() {
+                label_style.pos(Pos::new(h_pos, v_pos))
+            } else {
+                label_style.clone()
+            };
+            area.draw_text(t, &label_style, (text_x, text_y))?;
 
             if tick_size != 0 {
                 if let Some(style) = axis_style {

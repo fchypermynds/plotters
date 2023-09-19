@@ -60,7 +60,7 @@ impl<'a> From<&'a str> for FontFamily<'a> {
 /// ```
 pub mod text_anchor {
     /// The horizontal position of the anchor point relative to the text.
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, PartialEq)]
     pub enum HPos {
         /// Anchor point is on the left side of the text
         Left,
@@ -71,7 +71,7 @@ pub mod text_anchor {
     }
 
     /// The vertical position of the anchor point relative to the text.
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, PartialEq)]
     pub enum VPos {
         /// Anchor point is on the top of the text
         Top,
@@ -82,7 +82,7 @@ pub mod text_anchor {
     }
 
     /// The text anchor position.
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, PartialEq)]
     pub struct Pos {
         /// The horizontal position of the anchor point
         pub h_pos: HPos,
